@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+
+		<title>Busca de resultados numa tabela</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<!-- JQuery -->	    
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+		<!-- Twitter Bootstrap -->
+		<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- google-code-prettify -->
+		<link href="../lib/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="../lib/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="data:text/javascript;base64,YWRkRXZlbnRMaXN0ZW5lcignbG9hZCcsIGZ1bmN0aW9uIChldmVudCkgeyBwcmV0dHlQcmludCgp
+IH0sIGZhbHNlKTsK"></script>
+
+		<script type="text/javascript" src="jquery.uitablefilter.js"></script>	
+		<script type="text/javascript">
+			//http://gregweber.info/projects/uitablefilter		
+			$(document).ready(function(){
+				prettyprint();			
+			
+				var $tabela = $('table#resultados');
+				$("#busca").keyup(function() {
+		    	$.uiTableFilter($tabela, this.value);
+				});
+			});	      
+		</script>
+
+		<style type="text/css">
+			footer {
+				text-align: center;
+			}
+		</style>
+	</head>
+  
+	<body>
+		<!-- ******************** Barra de título ******************** -->
+		<header class="navbar navbar-inner">
+			<a class="brand" href="#">Filtragem de uma tabela com o uiTableFilter</a>
+		</header>
+
+		<article class="container row">
+		<!-- ******************** Texto ******************** -->
+		<section class="span8">
+			<p>O <a href="http://gregweber.info/projects/demo/flavorzoom.html">uiTableFilter</a> é um plugin <a href="http://www.jquery.com/">Jquery</a> que serve para filtrar as linhas de uma tabela segundo um critério de busca, como mostrado na figura abaixo:</p>
+			<figure>
+				<img src="uitablefilter.png" alt="Demonstração" />
+			</figure>
+			<p class="">Seu uso é bastante simples e é mostrado neste código de exemplo:</p>
+			<pre class="prettyprint pre-scrollable lang-html">
+&lt;script type=&quot;text/javascript&quot;&gt;
+	$(document).ready(function(){
+		var $tabela = $(&apos;table#resultados&apos;);
+		$(&quot;#busca&quot;).keyup(function() {
+			$.uiTableFilter($tabela, this.value);
+		});
+	});	      
+&lt;/script&gt;
+&lt;p&gt;Filtro: &lt;input id=&quot;busca&quot; type=&quot;text&quot; /&gt;&lt;/p&gt;
+&lt;table id=&quot;resultados&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Número&lt;/th&gt;
+			&lt;th&gt;Nome&lt;/th&gt;
+			&lt;th&gt;Usuário&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr dir=&quot;ltr&quot;&gt;
+			&lt;td class=&quot;s0&quot;&gt;1&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s1&quot;&gt;José Ribeiro&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s1&quot;&gt;Woodles&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr dir=&quot;ltr&quot;&gt;
+			&lt;td class=&quot;s2&quot;&gt;2&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Mariana Cavalcanti&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Poplits&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr dir=&quot;ltr&quot;&gt;
+			&lt;td class=&quot;s2&quot;&gt;3&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Kaua Martins&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Herhatiought&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr dir=&quot;ltr&quot;&gt;
+			&lt;td class=&quot;s2&quot;&gt;4&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Julia Barros&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Theimence&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr dir=&quot;ltr&quot;&gt;
+			&lt;td class=&quot;s2&quot;&gt;5&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Matilde Rocha&lt;/td&gt;
+			&lt;td dir=&quot;ltr&quot; class=&quot;s3&quot;&gt;Diered&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+		</pre>
+		<p>E aqui temos uma demonstração com uma lista de 100 nomes, números e nomes de usuário:</p>
+		</section>
+		<!-- ******************** Exemplo ******************** -->
+		<section class="span8 well">
+		<p>Filtro: <input id="busca" class="input-xlarge" type="text" /></p>
+		<table id="resultados" class="table table-condensed">
+			<thead>
+			<tr><th>Número</th><th>Nome</th><th>Usuário</th></tr>
+			</thead>
+<tbody>
+<tr dir="ltr">
+<td class="s0">1</td>
+<td dir="ltr" class="s1">José Ribeiro</td>
+<td dir="ltr" class="s1">Woodles</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">2</td>
+<td dir="ltr" class="s3">Mariana Cavalcanti</td>
+<td dir="ltr" class="s3">Poplits</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">3</td>
+<td dir="ltr" class="s3">Kaua Martins</td>
+<td dir="ltr" class="s3">Herhatiought</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">4</td>
+<td dir="ltr" class="s3">Julia Barros</td>
+<td dir="ltr" class="s3">Theimence</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">5</td>
+<td dir="ltr" class="s3">Matilde Rocha</td>
+<td dir="ltr" class="s3">Diered</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">6</td>
+<td dir="ltr" class="s3">Rafaela Azevedo</td>
+<td dir="ltr" class="s3">Garestle1978</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">7</td>
+<td dir="ltr" class="s3">Marcos Almeida</td>
+<td dir="ltr" class="s3">Busteding</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">8</td>
+<td dir="ltr" class="s3">Luiza Pereira</td>
+<td dir="ltr" class="s3">Frethe</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">9</td>
+<td dir="ltr" class="s3">João Araujo</td>
+<td dir="ltr" class="s3">Martramed</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">10</td>
+<td dir="ltr" class="s3">Vitor Cavalcanti</td>
+<td dir="ltr" class="s3">Shavoind</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">11</td>
+<td dir="ltr" class="s3">Luan Martins</td>
+<td dir="ltr" class="s3">Homyse</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">12</td>
+<td dir="ltr" class="s3">Rodrigo Castro</td>
+<td dir="ltr" class="s3">Wouthern</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">13</td>
+<td dir="ltr" class="s3">Kauan Dias</td>
+<td dir="ltr" class="s3">Limsere</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">14</td>
+<td dir="ltr" class="s3">Miguel Pereira</td>
+<td dir="ltr" class="s3">Smusbuty</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">15</td>
+<td dir="ltr" class="s3">Leonor Barbosa</td>
+<td dir="ltr" class="s3">Fluentsmay</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">16</td>
+<td dir="ltr" class="s3">Eduardo Cardoso</td>
+<td dir="ltr" class="s3">Doccoakere</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">17</td>
+<td dir="ltr" class="s3">Erick Carvalho</td>
+<td dir="ltr" class="s3">Weented</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">18</td>
+<td dir="ltr" class="s3">Raissa Barbosa</td>
+<td dir="ltr" class="s3">Inci1976</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">19</td>
+<td dir="ltr" class="s3">Leila Almeida</td>
+<td dir="ltr" class="s3">Notheireat</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">20</td>
+<td dir="ltr" class="s3">Tomás Almeida</td>
+<td dir="ltr" class="s3">Yessist1939</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">21</td>
+<td dir="ltr" class="s3">Amanda Rocha</td>
+<td dir="ltr" class="s3">Pristromer92</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">22</td>
+<td dir="ltr" class="s3">Lara Barros</td>
+<td dir="ltr" class="s3">Sedgerhy</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">23</td>
+<td dir="ltr" class="s3">Yasmin Correia</td>
+<td dir="ltr" class="s3">Supponed86</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">24</td>
+<td dir="ltr" class="s3">Ágatha Cardoso</td>
+<td dir="ltr" class="s3">Diddlegity</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">25</td>
+<td dir="ltr" class="s3">Evelyn Goncalves</td>
+<td dir="ltr" class="s3">Haned1957</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">26</td>
+<td dir="ltr" class="s3">Isabelle Souza</td>
+<td dir="ltr" class="s3">Foldiand</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">27</td>
+<td dir="ltr" class="s3">Cauã Pereira</td>
+<td dir="ltr" class="s3">Thandis</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">28</td>
+<td dir="ltr" class="s3">Caio Barros</td>
+<td dir="ltr" class="s3">Anion1929</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">29</td>
+<td dir="ltr" class="s3">Brenda Costa</td>
+<td dir="ltr" class="s3">Himposet</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">30</td>
+<td dir="ltr" class="s3">Arthur Martins</td>
+<td dir="ltr" class="s3">Prold1989</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">31</td>
+<td dir="ltr" class="s3">Carolina Sousa</td>
+<td dir="ltr" class="s3">Monsun</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">32</td>
+<td dir="ltr" class="s3">Miguel Barros</td>
+<td dir="ltr" class="s3">Prion1966</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">33</td>
+<td dir="ltr" class="s3">Leila Santos</td>
+<td dir="ltr" class="s3">Fifeled</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">34</td>
+<td dir="ltr" class="s3">Laura Pinto</td>
+<td dir="ltr" class="s3">Parepithe</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">35</td>
+<td dir="ltr" class="s3">Felipe Lima</td>
+<td dir="ltr" class="s3">Masimed</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">36</td>
+<td dir="ltr" class="s3">Júlio Rodrigues</td>
+<td dir="ltr" class="s3">Sprome</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">37</td>
+<td dir="ltr" class="s3">Felipe Goncalves</td>
+<td dir="ltr" class="s3">Dount1952</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">38</td>
+<td dir="ltr" class="s3">Julian Correia</td>
+<td dir="ltr" class="s3">Hishers</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">39</td>
+<td dir="ltr" class="s3">Lara Pinto</td>
+<td dir="ltr" class="s3">Sarued</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">40</td>
+<td dir="ltr" class="s3">Kauê Almeida</td>
+<td dir="ltr" class="s3">Plareput</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">41</td>
+<td dir="ltr" class="s3">Lavinia Cunha</td>
+<td dir="ltr" class="s3">Takentlyr</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">42</td>
+<td dir="ltr" class="s3">Giovanna Dias</td>
+<td dir="ltr" class="s3">Whinkent1953</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">43</td>
+<td dir="ltr" class="s3">Julia Ferreira</td>
+<td dir="ltr" class="s3">Onger1936</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">44</td>
+<td dir="ltr" class="s3">Giovanna Cavalcanti</td>
+<td dir="ltr" class="s3">Boartmed</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">45</td>
+<td dir="ltr" class="s3">Gabrielle Correia</td>
+<td dir="ltr" class="s3">Phyan1978</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">46</td>
+<td dir="ltr" class="s3">Emilly Cardoso</td>
+<td dir="ltr" class="s3">Imince</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">47</td>
+<td dir="ltr" class="s3">Vinícius Costa</td>
+<td dir="ltr" class="s3">Himps1991</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">48</td>
+<td dir="ltr" class="s3">Carla Barros</td>
+<td dir="ltr" class="s3">Liumber</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">49</td>
+<td dir="ltr" class="s3">Livia Cavalcanti</td>
+<td dir="ltr" class="s3">Drythilite</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">50</td>
+<td dir="ltr" class="s3">Paulo Fernandes</td>
+<td dir="ltr" class="s3">Fiuman</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">51</td>
+<td dir="ltr" class="s3">Brenda Melo</td>
+<td dir="ltr" class="s3">Greles</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">52</td>
+<td dir="ltr" class="s3">Alex Cavalcanti</td>
+<td dir="ltr" class="s3">Caranown</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">53</td>
+<td dir="ltr" class="s3">Kaua Oliveira</td>
+<td dir="ltr" class="s3">Ducand</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">54</td>
+<td dir="ltr" class="s3">Davi Santos</td>
+<td dir="ltr" class="s3">Worach93</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">55</td>
+<td dir="ltr" class="s3">Rafael Pereira</td>
+<td dir="ltr" class="s3">Theigiche</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">56</td>
+<td dir="ltr" class="s3">Livia Ferreira</td>
+<td dir="ltr" class="s3">Mange1973</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">57</td>
+<td dir="ltr" class="s3">Beatriz Cunha</td>
+<td dir="ltr" class="s3">Hushan</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">58</td>
+<td dir="ltr" class="s3">Julian Castro</td>
+<td dir="ltr" class="s3">Iont1973</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">59</td>
+<td dir="ltr" class="s3">Julieta Pereira</td>
+<td dir="ltr" class="s3">Suppinfood</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">60</td>
+<td dir="ltr" class="s3">Martim Costa</td>
+<td dir="ltr" class="s3">Oused1983</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">61</td>
+<td dir="ltr" class="s3">Melissa Gomes</td>
+<td dir="ltr" class="s3">Wayself</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">62</td>
+<td dir="ltr" class="s3">Bianca Cardoso</td>
+<td dir="ltr" class="s3">Butertench</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">63</td>
+<td dir="ltr" class="s3">Lucas Cardoso</td>
+<td dir="ltr" class="s3">Therec</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">64</td>
+<td dir="ltr" class="s3">Caio Pinto</td>
+<td dir="ltr" class="s3">Theitchers</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">65</td>
+<td dir="ltr" class="s3">Kai Silva</td>
+<td dir="ltr" class="s3">Fighbrich63</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">66</td>
+<td dir="ltr" class="s3">Yasmin Barros</td>
+<td dir="ltr" class="s3">Thurs1967</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">67</td>
+<td dir="ltr" class="s3">Fábio Barbosa</td>
+<td dir="ltr" class="s3">Herece</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">68</td>
+<td dir="ltr" class="s3">Júlia Sousa</td>
+<td dir="ltr" class="s3">Tourield43</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">69</td>
+<td dir="ltr" class="s3">Isabela Araujo</td>
+<td dir="ltr" class="s3">Stue1979</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">70</td>
+<td dir="ltr" class="s3">José Sousa</td>
+<td dir="ltr" class="s3">Prios1937</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">71</td>
+<td dir="ltr" class="s3">Pedro Pereira</td>
+<td dir="ltr" class="s3">Alem1949</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">72</td>
+<td dir="ltr" class="s3">Ana Ferreira</td>
+<td dir="ltr" class="s3">Orne1931</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">73</td>
+<td dir="ltr" class="s3">Isabela Melo</td>
+<td dir="ltr" class="s3">Poichad</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">74</td>
+<td dir="ltr" class="s3">Bruna Pereira</td>
+<td dir="ltr" class="s3">Sparleathe</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">75</td>
+<td dir="ltr" class="s3">Fábio Carvalho</td>
+<td dir="ltr" class="s3">Marring</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">76</td>
+<td dir="ltr" class="s3">Carla Fernandes</td>
+<td dir="ltr" class="s3">Nowbel</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">77</td>
+<td dir="ltr" class="s3">Mariana Ferreira</td>
+<td dir="ltr" class="s3">Harfidut</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">78</td>
+<td dir="ltr" class="s3">Sarah Barros</td>
+<td dir="ltr" class="s3">Sheirstles</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">79</td>
+<td dir="ltr" class="s3">Marina Fernandes</td>
+<td dir="ltr" class="s3">Breserand</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">80</td>
+<td dir="ltr" class="s3">Renan Pereira</td>
+<td dir="ltr" class="s3">Etted1934</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">81</td>
+<td dir="ltr" class="s3">Guilherme Rocha</td>
+<td dir="ltr" class="s3">Madve1983</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">82</td>
+<td dir="ltr" class="s3">Ana Martins</td>
+<td dir="ltr" class="s3">Tholdrie</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">83</td>
+<td dir="ltr" class="s3">Leonardo Goncalves</td>
+<td dir="ltr" class="s3">Therrown</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">84</td>
+<td dir="ltr" class="s3">Eduarda Santos</td>
+<td dir="ltr" class="s3">Thernmed1968</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">85</td>
+<td dir="ltr" class="s3">Raissa Dias</td>
+<td dir="ltr" class="s3">Incibes</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">86</td>
+<td dir="ltr" class="s3">Guilherme Pinto</td>
+<td dir="ltr" class="s3">Laidearks1988</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">87</td>
+<td dir="ltr" class="s3">Sofia Carvalho</td>
+<td dir="ltr" class="s3">Forthand</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">88</td>
+<td dir="ltr" class="s3">Nicolash Goncalves</td>
+<td dir="ltr" class="s3">Trut1955</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">89</td>
+<td dir="ltr" class="s3">Daniel Alves</td>
+<td dir="ltr" class="s3">Jecome</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">90</td>
+<td dir="ltr" class="s3">Rodrigo Castro</td>
+<td dir="ltr" class="s3">Glaccief</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">91</td>
+<td dir="ltr" class="s3">Gabrielle Sousa</td>
+<td dir="ltr" class="s3">Doopeas</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">92</td>
+<td dir="ltr" class="s3">Rafaela Alves</td>
+<td dir="ltr" class="s3">Bege1935</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">93</td>
+<td dir="ltr" class="s3">Vitor Ferreira</td>
+<td dir="ltr" class="s3">Struch</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">94</td>
+<td dir="ltr" class="s3">Victor Cunha</td>
+<td dir="ltr" class="s3">Aget1980</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">95</td>
+<td dir="ltr" class="s3">Eduarda Santos</td>
+<td dir="ltr" class="s3">Infichice</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">96</td>
+<td dir="ltr" class="s3">João Silva</td>
+<td dir="ltr" class="s3">Plawnew1936</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">97</td>
+<td dir="ltr" class="s3">Julia Pereira</td>
+<td dir="ltr" class="s3">Ningle</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">98</td>
+<td dir="ltr" class="s3">Gustavo Correia</td>
+<td dir="ltr" class="s3">Nested</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">99</td>
+<td dir="ltr" class="s3">André Correia</td>
+<td dir="ltr" class="s3">Frarte1983</td>
+</tr>
+<tr dir="ltr">
+<td class="s2">100</td>
+<td dir="ltr" class="s3">Amanda Rocha</td>
+<td dir="ltr" class="s3">Tual1951</td>
+</tr>
+</tbody>
+			</table>
+				<p class="ref">Nomes  gerados pelo <a href="http://pt.fakenamegenerator.com/">Fake Name Generator</a></p>
+			</section>
+		</article>
+		<footer class="navbar">
+			<hr />
+			<p><small><a rel="license" href="http://creativecommons.org/licenses/by/3.0/br/deed.pt"><img alt="Licença Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/br/80x15.png" /></a> Este trabalho foi licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/3.0/br/deed.pt">Creative Commons - Atribuição  3.0 Brasil</a>.</small></p>
+		</footer>
+	</body>
+</html>
